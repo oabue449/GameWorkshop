@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://du82b7s66mc0"]
+
+[ext_resource type="Texture2D" uid="uid://cg8yuuoe4ihi2" path="res://Asset/tileset-Sheet.png" id="1_3d0b4"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_33qtt"]
+[ext_resource type="PackedScene" uid="uid://ckes1x44hau48" path="res://player.tscn" id="2_7ec5b"]
+[ext_resource type="PackedScene" uid="uid://c43puwxbejyqs" path="res://key.tscn" id="3_yow7f"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_61432"]
+texture = ExtResource("1_3d0b4")
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_oa0fd"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_61432")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_33qtt")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_oa0fd")
+format = 2
+layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 589825, 65536, 1, 589826, 65536, 1, 589827, 65536, 1, 589828, 65536, 1, 589829, 65536, 1, 589830, 65536, 1, 589831, 65536, 1, 589832, 65536, 1, 524297, 65536, 1, 458761, 65536, 1, 393225, 65536, 1, 589833, 65536, 1, 524293, 65536, 1, 524294, 65536, 1, 524295, 65536, 1, 458759, 65536, 1, 458760, 65536, 1, 393224, 65536, 1, 524296, 65536, 1, 458758, 65536, 1, 393223, 65536, 1, 524292, 65536, 1, 524291, 65536, 1, 458757, 65536, 1, 262145, 65536, 1, 131080, 65536, 1, 65545, 65536, 1, 9, 65536, 1, 131081, 65536, 1, 131079, 65536, 1, 65544, 65536, 1, 327681, 65536, 1, 327680, 65536, 1, 262144, 65536, 1, 327682, 65536, 1, 327683, 65536, 1, 131076, 65536, 1, 131077, 65536, 1, 327689, 65536, 1, 262153, 65536, 1, 196617, 65536, 1, 589823, 65536, 1, 524287, 65536, 1, 458751, 65536, 1, 262143, 65536, 1, 196607, 65536, 1, 131071, 65536, 1, 65535, 65536, 1, -65536, 65536, 1, -65535, 65536, 1, -65534, 65536, 1, -65533, 65536, 1, -65532, 65536, 1, -65531, 65536, 1, -65530, 65536, 1, -131066, 65536, 1, -131065, 65536, 1, -131064, 65536, 1, -131063, 65536, 1, -131062, 65536, 1, -131061, 65536, 1, -65525, 65536, 1, 11, 65536, 1, 10, 65536, 1, -65526, 65536, 1, -65527, 65536, 1, -65528, 65536, 1, -65529, 65536, 1)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_7ec5b")]
+position = Vector2(8, 104)
+
+[node name="Area2D" parent="." instance=ExtResource("3_yow7f")]
+position = Vector2(118, 19)
+
+[node name="Area2D2" parent="." instance=ExtResource("3_yow7f")]
+position = Vector2(17, 16)
+
+[node name="Area2D3" parent="." instance=ExtResource("3_yow7f")]
+position = Vector2(91, 69)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_area_2d_body_entered"]
